@@ -5,9 +5,10 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
+$database = "patient-management-system";
 
 //Create Connection Object
-$conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect($servername, $username, $password, $database);
 
 //
 
