@@ -174,11 +174,19 @@ $result = mysqli_query($conn, $sql);
 
 	}
 
+//displaying records from db table
+$sql = "Select * from `doctor`";
+	$result = mysqli_query($conn, $sql);	
 
+	echo "<table>";
+echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th></tr>";
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["gender"] . "</td><td>" . $row["address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["phone"] . "</td></tr>";
+}
+echo "</table>";
 
-
-
-
+// Close the database connection
+mysqli_close($conn);
 
 
 	?>
