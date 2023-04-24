@@ -33,6 +33,11 @@
 	  padding: 30px;
 	}
 
+	
+	h1{
+		text-align: center;
+	}
+
 	/* Style the form input fields */
 	input[type=text], input[type=date], input[type=email], input[type=tel], textarea {
 	  width: 100%;
@@ -77,8 +82,8 @@
 	<!-- Navigation bar -->
 	<div class="navbar">
 		<a href="#">Home</a>
-		<a href="#">Doctor</a>
-		<a href="#">Patient</a>
+		<a href="http://localhost/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
+		<a href="http://localhost/patient-management-system/PMS/Candidates/patient.php">Patient</a>
 	</div>
 
     <!-- Patient registration form -->

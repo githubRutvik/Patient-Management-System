@@ -19,6 +19,7 @@
 	  text-decoration: none;
 	}
 
+
 	/* Change the color of links on hover */
 	.navbar a:hover {
 	  background-color: #ddd;
@@ -31,6 +32,10 @@
 	  width: 50%;
 	  margin: 0 auto;
 	  padding: 20px;
+	}
+
+	h1{
+		text-align: center;
 	}
 
 	/* Style the form input fields */
@@ -77,8 +82,8 @@
 	<!-- Navigation bar -->
 	<div class="navbar">
 		<a href="#">Home</a>
-		<a href="#">Doctor</a>
-		<a href="#">Patient</a>
+		<a href="http://localhost/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
+		<a href="http://localhost/patient-management-system/PMS/Candidates/patient.php">Patient</a>
 	</div>
 
     <!-- Patient registration form -->
@@ -86,9 +91,6 @@
 	<h1>Doctor Registration Form</h1>
 	<label for="name">Name:</label>
 	<input type="text" id="name" name="name"><br><br>
-
-	<label for="address">Address:</label>
-	<textarea id="address" name="address"></textarea><br><br>
 
 	<label for="dob">Date of Birth:</label>
 	<input type="date" id="dob" name="dob"><br><br>
@@ -100,10 +102,14 @@
 	<label for="female">Female</label><br><br>
 
 	<label for="lname">Specialisation:</label>
-	<input type="text" id="specialisation" name="specialisation"><br><br>
+	<input type="text" id="specialization" name="specialization"><br><br>
 
 	<label for="phone">Phone Number:</label>
 	<input type="tel" id="phone" name="phone"><br><br>
+
+	
+	<label for="address">Address:</label>
+	<textarea id="address" name="address"></textarea><br><br>
 
     <input type="submit" value="Submit">
 	<input type="reset" value="Reset">
@@ -161,7 +167,7 @@ $sql = "INSERT INTO `doctor` (`d_name`, `dob`, `d_gender`, `d_address`, `d_phone
 VALUES ('$name', '$dob', '$gender', '$address', '$phone', '$specialization')";
 $result = mysqli_query($conn, $sql);
 
-		echo "<h2>Your Information:</h2>";
+		echo "<h2>Your Submission:</h2>";
 		
 		echo "Name: $name<br>";
 		echo "Date of Birth: $dob<br>";
@@ -169,6 +175,10 @@ $result = mysqli_query($conn, $sql);
 		echo "Address: $address<br>";
         echo "Specialization: $specialization<br>";
 		echo "Phone: $phone<br>";
+
+		echo"<br>";
+		echo"<br>";
+		echo"<br>";
 
         // record entry message
         if($result){
