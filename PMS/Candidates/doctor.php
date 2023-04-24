@@ -82,13 +82,16 @@
 	</div>
 
     <!-- Patient registration form -->
-<form>
+<form method = "post">
 	<h1>Doctor Registration Form</h1>
 	<label for="name">Name:</label>
 	<input type="text" id="name" name="name"><br><br>
 
 	<label for="address">Address:</label>
 	<textarea id="address" name="address"></textarea><br><br>
+
+	<label for="dob">Date of Birth:</label>
+	<input type="date" id="dob" name="dob"><br><br>
 
 	<label for="gender">Gender:</label>
 	<input type="radio" id="male" name="gender" value="male">
@@ -97,7 +100,7 @@
 	<label for="female">Female</label><br><br>
 
 	<label for="lname">Specialisation:</label>
-	<input type="text" id="specialisation" name="Specialisation"><br><br>
+	<input type="text" id="specialisation" name="specialisation"><br><br>
 
 	<label for="phone">Phone Number:</label>
 	<input type="tel" id="phone" name="phone"><br><br>
@@ -107,10 +110,10 @@
 </form>
 
 <!-- Footer -->
-<div class="footer">
+<!-- <div class="footer">
 	<p>Copyright © 2023 
 	<a href="#">YourWebsite.com</a> All rights reserved.</p>
-</div>
+</div> -->
 
 
 
@@ -141,10 +144,7 @@ else{
 echo "Connection was Successful";
 }
 
-//Inserting to database table
-$sql = "INSERT INTO `doctor` (`d_name`, `dob`, `d_gender`, `d_address`, `d_phone`, `specialization`) 
-VALUES ('$name', '$dob', '$gender', '$address', '$phone', '$specialization')";
-$result = mysqli_query($conn, $sql);
+
   
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -155,6 +155,11 @@ $result = mysqli_query($conn, $sql);
 		$address = $_POST["address"];
 		$phone = $_POST["phone"];
         $specialization = $_POST["specialization"];
+
+		//Inserting to database table
+$sql = "INSERT INTO `doctor` (`d_name`, `dob`, `d_gender`, `d_address`, `d_phone`, `specialization`) 
+VALUES ('$name', '$dob', '$gender', '$address', '$phone', '$specialization')";
+$result = mysqli_query($conn, $sql);
 
 		echo "<h2>Your Information:</h2>";
 		
@@ -179,9 +184,9 @@ $sql = "Select * from `doctor`";
 	$result = mysqli_query($conn, $sql);	
 
 	echo "<table>";
-echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th></tr>";
+echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Specialization</th><th>Phone</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["gender"] . "</td><td>" . $row["address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["phone"] . "</td></tr>";
+    echo "<tr><td>" . $row["d_id"] . "</td><td>" . $row["d_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["d_gender"] . "</td><td>" . $row["d_address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["d_phone"] . "</td></tr>";
 }
 echo "</table>";
 

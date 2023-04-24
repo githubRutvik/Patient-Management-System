@@ -82,10 +82,10 @@
 	</div>
 
     <!-- Patient registration form -->
-<form>
+<form method="post">
 	<h1>Patient Registration Form</h1>
 	<label for="name">Name:</label>
-	<input type="text" id="name" name="fname"><br><br>
+	<input type="text" id="name" name="name"><br><br>
 
 	<label for="dob">Date of Birth:</label>
 	<input type="date" id="dob" name="dob"><br><br>
@@ -110,10 +110,10 @@
 </form>
 
 <!-- Footer -->
-<div class="footer">
+<!-- <div class="footer">
 	<p>Copyright © 2023 
 	<a href="#">YourWebsite.com</a> All rights reserved.</p>
-</div>
+</div> -->
 
 
 <?php
@@ -138,10 +138,6 @@ else{
 echo "Connection was Successful";
 }
 
-//Inserting to database table
-$sql = "INSERT INTO `patient` ( `p_name`, `dob`, `p_gender`, `p_address`, `p_phone`)
-         VALUES ( '$name', '$dob', '$gender', '$address', '$phone')";
-$result = mysqli_query($conn, $sql);
   
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -151,6 +147,13 @@ $result = mysqli_query($conn, $sql);
 		$gender = $_POST['gender'];
 		$address = $_POST["address"];
 		$phone = $_POST["phone"];
+
+
+
+		//Inserting to database table
+$sql = "INSERT INTO `patient` ( `p_name`, `dob`, `p_gender`, `p_address`, `p_phone`)
+VALUES ( '$name', '$dob', '$gender', '$address', '$phone')";
+$result = mysqli_query($conn, $sql);
 
 		echo "<h2>Your Information:</h2>";
 		
@@ -176,7 +179,7 @@ $result = mysqli_query($conn, $sql);
 	echo "<table>";
 echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["gender"] . "</td><td>" . $row["address"] . "</td><td>" . $row["phone"] . "</td></tr>";
+    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td></tr>";
 }
 echo "</table>";
 
