@@ -188,9 +188,9 @@ $result = mysqli_query($conn, $sql);
 	$result = mysqli_query($conn, $sql);	
 
 	echo "<table class ='table table-dark'>";
-echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th><th>Modify</th></tr>";
+echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Edit</button></td></tr>";
+    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
 }
 echo "</table>";
 
