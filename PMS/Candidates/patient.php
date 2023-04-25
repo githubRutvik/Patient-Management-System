@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>Patient Registration Form</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<style>
 		/* Style the navigation bar */
 		.navbar {
@@ -129,7 +131,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "patient_management_system";
+$database = "patient-management-system";
 
 //Create Connection Object
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -168,6 +170,10 @@ $result = mysqli_query($conn, $sql);
 		echo "Address: $address<br>";
 		echo "Phone: $phone<br>";
 
+		echo"<br>";
+		echo"<br>";
+		echo"<br>";
+
         // record entry message
         if($result){
             echo "The record was inserted successfully. <br>";
@@ -181,10 +187,10 @@ $result = mysqli_query($conn, $sql);
 	$sql = "Select * from `patient`";
 	$result = mysqli_query($conn, $sql);	
 
-	echo "<table>";
-echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th></tr>";
+	echo "<table class ='table table-dark'>";
+echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th><th>Modify</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td></tr>";
+    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Edit</button></td></tr>";
 }
 echo "</table>";
 

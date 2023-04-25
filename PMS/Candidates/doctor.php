@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<title>Doctor Registration Form</title>
 	<style>
 		/* Style the navigation bar */
@@ -136,7 +137,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "patient_management_system";
+$database = "patient-management-system";
 
 //Create Connection Object
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -193,10 +194,10 @@ $result = mysqli_query($conn, $sql);
 $sql = "Select * from `doctor`";
 	$result = mysqli_query($conn, $sql);	
 
-	echo "<table>";
-echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Specialization</th><th>Phone</th></tr>";
+	echo "<table class ='table table-dark'>";
+echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Specialization</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["d_id"] . "</td><td>" . $row["d_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["d_gender"] . "</td><td>" . $row["d_address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["d_phone"] . "</td></tr>";
+    echo "<tr><td>" . $row["d_id"] . "</td><td>" . $row["d_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["d_gender"] . "</td><td>" . $row["d_address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["d_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
 }
 echo "</table>";
 

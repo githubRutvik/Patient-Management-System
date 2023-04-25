@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 05:13 PM
+-- Generation Time: Apr 24, 2023 at 01:19 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `patient_management_system`
+-- Database: `patient-management-system`
 --
 
 -- --------------------------------------------------------
@@ -48,18 +48,20 @@ CREATE TABLE `doctor` (
   `d_address` varchar(100) NOT NULL,
   `d_gender` char(20) NOT NULL,
   `specialization` varchar(200) NOT NULL,
-  `d_phone` varchar(15) NOT NULL
+  `d_phone` varchar(15) NOT NULL,
+  `dob` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`d_id`, `d_name`, `d_address`, `d_gender`, `specialization`, `d_phone`) VALUES
-(1, 'Joel D\'Souza', 'Mapusa, Bardez, Goa', 'Male', 'Dentist', '9076325476'),
-(2, 'Shivani Gorpode', 'Pune, Maharashtra, India', 'Female', 'Surgeon, Physician', '9809212198'),
-(3, 'Ravi Shankar', 'Tamilnadu, India', 'Male', 'Cardiologist', '7766908709'),
-(4, 'Kevin Fernandes', 'Margao, Goa, India', 'Male', 'Neurologist, Psychiatrist', '8709321254');
+INSERT INTO `doctor` (`d_id`, `d_name`, `d_address`, `d_gender`, `specialization`, `d_phone`, `dob`) VALUES
+(0, 'Sneharsh Kerkar', 'Taliegao', 'male', 'Dentist', '7898212143', '2000-11-10'),
+(1, 'Joel D\'Souza', 'Mapusa, Bardez, Goa', 'Male', 'Dentist', '9076325476', NULL),
+(2, 'Shivani Gorpode', 'Pune, Maharashtra, India', 'Female', 'Surgeon, Physician', '9809212198', NULL),
+(3, 'Ravi Shankar', 'Tamilnadu, India', 'Male', 'Cardiologist', '7766908709', NULL),
+(4, 'Kevin Fernandes', 'Margao, Goa, India', 'Male', 'Neurologist, Psychiatrist', '8709321254', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,7 +104,8 @@ INSERT INTO `patient` (`p_id`, `p_name`, `dob`, `p_gender`, `p_address`, `p_phon
 (4, 'Heeralal Mehta', '2001-04-26', 'Male', 'Powder Galli, Mumbai, India', '7687769809'),
 (5, 'Terrance Silva', '2003-04-02', 'Male', 'St. Cruz, Panjim, Goa', '8754760987'),
 (6, ' Shiva Kumar', '1997-06-11', 'male', 'Baga, Anjuna, Bardez, Goa', '7698686430'),
-(7, ' Kiran Gawde', '2001-08-01', 'male', 'Calangute, Bardez, Goa', '9876634546');
+(7, ' Kiran Gawde', '2001-08-01', 'male', 'Calangute, Bardez, Goa', '9876634546'),
+(10, 'Sneharsh Kerkar', '2000-11-10', 'male', 'Taliegao', '7898212143');
 
 --
 -- Indexes for dumped tables
@@ -142,7 +145,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
