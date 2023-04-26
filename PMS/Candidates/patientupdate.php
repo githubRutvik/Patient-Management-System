@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Patient Registration Form</title>
+<title>Update Patient Details</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<style>
@@ -90,7 +90,12 @@
 
     <!-- Patient registration form -->
 <form method="post">
-	<h1>Patient Registration Form</h1>
+	<h1>Patient Details Updation</h1>
+    <br><br>
+
+    <label for="id">ID:</label>
+	<input type="int" id="id" name="id"><br><br>
+
 	<label for="name">Name:</label>
 	<input type="text" id="name" name="name"><br><br>
 
@@ -149,6 +154,7 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
+        $id = $_POST["id"];
 		$name = $_POST["name"];
 		$dob = $_POST["dob"];
 		$gender = $_POST['gender'];
@@ -158,11 +164,11 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 
 
 		//Inserting to database table
-$sql = "INSERT INTO `patient` ( `p_name`, `dob`, `p_gender`, `p_address`, `p_phone`)
-VALUES ( '$name', '$dob', '$gender', '$address', '$phone')";
+$sql = "UPDATE `patient` SET `p_name` = '$name', `p_gender`='$gender', `dob`='$dob', `p_address`= '$address', `p_phone`='$phone' WHERE `patient`.`p_id` = $id";
+
 $result = mysqli_query($conn, $sql);
 
-		echo "<h2>Your Information:</h2>";
+		echo "<h2>Update Information:</h2>";
 		
 		echo "Name: $name<br>";
 		echo "Date of Birth: $dob<br>";
@@ -176,23 +182,14 @@ $result = mysqli_query($conn, $sql);
 
         // record entry message
         if($result){
-            echo "The record was inserted successfully. <br>";
+            echo "The record was updated successfully. <br>";
         }else{
-            echo "The record was not inserted successfully. <br>";
+            echo "The record was not updated successfully. <br>";
         }
 
 	}
 
 
-	$sql = "Select * from `patient`";
-	$result = mysqli_query($conn, $sql);	
-
-	echo "<table class ='table table-dark'>";
-echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
-}
-echo "</table>";
 
 // Close the database connection
 mysqli_close($conn);

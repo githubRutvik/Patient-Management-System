@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Patient Registration Form</title>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<title>Doctor Registration Form</title>
 	<style>
 		/* Style the navigation bar */
 		.navbar {
@@ -21,6 +20,7 @@
 	  text-decoration: none;
 	}
 
+
 	/* Change the color of links on hover */
 	.navbar a:hover {
 	  background-color: #ddd;
@@ -32,10 +32,9 @@
 	  border: 3px solid #f1f1f1;
 	  width: 50%;
 	  margin: 0 auto;
-	  padding: 30px;
+	  padding: 20px;
 	}
 
-	
 	h1{
 		text-align: center;
 	}
@@ -72,7 +71,7 @@
 	  background-color: #333;
 	  color: white;
 	  text-align: center;
-	  padding: 5px;
+	  padding: 10px;
 	  position: fixed;
 	  left: 0;
 	  bottom: 0;
@@ -89,8 +88,12 @@
 	</div>
 
     <!-- Patient registration form -->
-<form method="post">
-	<h1>Patient Registration Form</h1>
+<form method = "post">
+<h1>Patient Details Updation</h1>
+<br><br>
+    <label for="id">ID:</label>
+    <input type="int" id="id" name="id"><br><br>
+
 	<label for="name">Name:</label>
 	<input type="text" id="name" name="name"><br><br>
 
@@ -103,24 +106,19 @@
 	<input type="radio" id="female" name="gender" value="female">
 	<label for="female">Female</label><br><br>
 
-	<label for="email">Email:</label>
-	<input type="email" id="email" name="email"><br><br>
+	<label for="lname">Specialisation:</label>
+	<input type="text" id="specialization" name="specialization"><br><br>
 
 	<label for="phone">Phone Number:</label>
 	<input type="tel" id="phone" name="phone"><br><br>
 
+	
 	<label for="address">Address:</label>
 	<textarea id="address" name="address"></textarea><br><br>
 
     <input type="submit" value="Submit">
 	<input type="reset" value="Reset">
 </form>
-
-<!-- Footer -->
-<!-- <div class="footer">
-	<p>Copyright © 2023 
-	<a href="#">YourWebsite.com</a> All rights reserved.</p>
-</div> -->
 
 
 <?php
@@ -145,29 +143,31 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 // echo "Connection was Successful";
 // }
 
+
   
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-		$name = $_POST["name"];
+        $id = $_POST["id"];
+        $name = $_POST["name"];
 		$dob = $_POST["dob"];
 		$gender = $_POST['gender'];
 		$address = $_POST["address"];
 		$phone = $_POST["phone"];
-
-
+        $specialization = $_POST["specialization"];
 
 		//Inserting to database table
-$sql = "INSERT INTO `patient` ( `p_name`, `dob`, `p_gender`, `p_address`, `p_phone`)
-VALUES ( '$name', '$dob', '$gender', '$address', '$phone')";
-$result = mysqli_query($conn, $sql);
+        $sql = "UPDATE `doctor` SET `d_name` = '$name', `d_gender`='$gender', `dob`='$dob', `d_address`= '$address', `d_phone`='$phone', `specialization` = '$specialization' WHERE `doctor`.`d_id` = $id";
 
-		echo "<h2>Your Information:</h2>";
+        $result = mysqli_query($conn, $sql);
+
+		echo "<h2>Update Information:</h2>";
 		
 		echo "Name: $name<br>";
 		echo "Date of Birth: $dob<br>";
 		echo "Gender: $gender<br>";
 		echo "Address: $address<br>";
+        echo "Specialization: $specialization<br>";
 		echo "Phone: $phone<br>";
 
 		echo"<br>";
@@ -176,30 +176,20 @@ $result = mysqli_query($conn, $sql);
 
         // record entry message
         if($result){
-            echo "The record was inserted successfully. <br>";
+            echo "The record was updated successfully. <br>";
         }else{
-            echo "The record was not inserted successfully. <br>";
+            echo "The record was not updated successfully. <br>";
         }
 
 	}
 
 
-	$sql = "Select * from `patient`";
-	$result = mysqli_query($conn, $sql);	
-
-	echo "<table class ='table table-dark'>";
-echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
-}
-echo "</table>";
 
 // Close the database connection
 mysqli_close($conn);
 
 
-
-
 	?>
+
 </body>
 </html>
