@@ -82,7 +82,7 @@
 <body>
 	<!-- Navigation bar -->
 	<div class="navbar">
-		<a href="#">Home</a>
+		<a href="http://localhost/patient-management-system/PMS/Candidates/home.html">Home</a>
 		<a href="http://localhost/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
 		<a href="http://localhost/patient-management-system/PMS/Candidates/patient.php">Patient</a>
 	</div>
