@@ -97,7 +97,7 @@ body {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/home.html">Home</a>
+                <a class="nav-link active" aria-current="page" href="http://localhost/Patient-Management-System/PMS/Candidates/home.html">Home</a>
               </li>
               
               
@@ -158,7 +158,7 @@ body {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "patient_management_system";
+$database = "patient-management-system";
 
 //Create Connection Object
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -216,9 +216,9 @@ $sql = "Select * from `doctor`";
 	$result = mysqli_query($conn, $sql);	
 
 	echo "<table class ='table table-dark'>";
-echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Specialization</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
+echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Specialization</th><th>Phone</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["d_id"] . "</td><td>" . $row["d_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["d_gender"] . "</td><td>" . $row["d_address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["d_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
+    echo "<tr><td>" . $row["d_id"] . "</td><td>" . $row["d_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["d_gender"] . "</td><td>" . $row["d_address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["d_phone"] . "</td></tr>";
 }
 echo "</table>";
 

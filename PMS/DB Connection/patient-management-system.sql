@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 01:19 PM
+-- Generation Time: Apr 27, 2023 at 01:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,12 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bill` (
   `b_id` int(11) NOT NULL,
-  `p_id` int(11) DEFAULT NULL,
-  `pathology_fees` decimal(10,2) DEFAULT NULL,
-  `room_fees` decimal(10,2) DEFAULT NULL,
-  `misc` decimal(10,2) DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL
+  `p_id` int(11) NOT NULL,
+  `pathology_fees` int(11) NOT NULL,
+  `room_fees` int(11) NOT NULL,
+  `misc` int(11) NOT NULL,
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`b_id`, `p_id`, `pathology_fees`, `room_fees`, `misc`, `total`) VALUES
+(1, 1, 250, 1000, 150, 1400);
 
 -- --------------------------------------------------------
 
@@ -44,24 +51,20 @@ CREATE TABLE `bill` (
 
 CREATE TABLE `doctor` (
   `d_id` int(11) NOT NULL,
-  `d_name` varchar(50) NOT NULL,
-  `d_address` varchar(100) NOT NULL,
-  `d_gender` char(20) NOT NULL,
-  `specialization` varchar(200) NOT NULL,
-  `d_phone` varchar(15) NOT NULL,
-  `dob` date DEFAULT NULL
+  `d_name` varchar(255) NOT NULL,
+  `dob` date NOT NULL,
+  `d_gender` varchar(255) NOT NULL,
+  `d_address` varchar(255) NOT NULL,
+  `d_phone` varchar(10) NOT NULL,
+  `specialization` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`d_id`, `d_name`, `d_address`, `d_gender`, `specialization`, `d_phone`, `dob`) VALUES
-(0, 'Sneharsh Kerkar', 'Taliegao', 'male', 'Dentist', '7898212143', '2000-11-10'),
-(1, 'Joel D\'Souza', 'Mapusa, Bardez, Goa', 'Male', 'Dentist', '9076325476', NULL),
-(2, 'Shivani Gorpode', 'Pune, Maharashtra, India', 'Female', 'Surgeon, Physician', '9809212198', NULL),
-(3, 'Ravi Shankar', 'Tamilnadu, India', 'Male', 'Cardiologist', '7766908709', NULL),
-(4, 'Kevin Fernandes', 'Margao, Goa, India', 'Male', 'Neurologist, Psychiatrist', '8709321254', NULL);
+INSERT INTO `doctor` (`d_id`, `d_name`, `dob`, `d_gender`, `d_address`, `d_phone`, `specialization`) VALUES
+(1, 'Sneharsh Kerkar', '1992-05-10', 'male', 'Goa', '8976541209', 'Cardiologist');
 
 -- --------------------------------------------------------
 
@@ -70,13 +73,20 @@ INSERT INTO `doctor` (`d_id`, `d_name`, `d_address`, `d_gender`, `specialization
 --
 
 CREATE TABLE `medhist` (
-  `d_id` int(11) NOT NULL,
   `p_id` int(11) NOT NULL,
+  `d_id` int(11) NOT NULL,
   `date_admit` date DEFAULT NULL,
   `date_discharge` date DEFAULT NULL,
-  `medicines` varchar(255) DEFAULT NULL,
-  `treatment` varchar(255) DEFAULT NULL
+  `medicines` varchar(255) NOT NULL,
+  `treatment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `medhist`
+--
+
+INSERT INTO `medhist` (`p_id`, `d_id`, `date_admit`, `date_discharge`, `medicines`, `treatment`) VALUES
+(1, 1, '2018-03-11', '2018-04-12', 'Nitroglycerin, Morphine, Aspirin', 'Cardiac CT or MRI');
 
 -- --------------------------------------------------------
 
@@ -86,11 +96,11 @@ CREATE TABLE `medhist` (
 
 CREATE TABLE `patient` (
   `p_id` int(11) NOT NULL,
-  `p_name` varchar(50) NOT NULL,
+  `p_name` varchar(255) NOT NULL,
   `dob` date NOT NULL,
-  `p_gender` varchar(20) NOT NULL,
-  `p_address` varchar(100) NOT NULL,
-  `p_phone` varchar(15) DEFAULT NULL
+  `p_gender` varchar(255) NOT NULL,
+  `p_address` varchar(255) NOT NULL,
+  `p_phone` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -98,14 +108,7 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`p_id`, `p_name`, `dob`, `p_gender`, `p_address`, `p_phone`) VALUES
-(1, 'Ravi Chadda', '1992-12-10', 'Male', 'Panjim, Goa, India', '9876871209'),
-(2, 'Sita Chauhan', '1998-01-09', 'Female', 'Belgaum, Karnataka, India', '8765980912'),
-(3, 'Rohit Shetty', '1989-04-07', 'Male', 'Dharavi, Mumbai, India', '9867095487'),
-(4, 'Heeralal Mehta', '2001-04-26', 'Male', 'Powder Galli, Mumbai, India', '7687769809'),
-(5, 'Terrance Silva', '2003-04-02', 'Male', 'St. Cruz, Panjim, Goa', '8754760987'),
-(6, ' Shiva Kumar', '1997-06-11', 'male', 'Baga, Anjuna, Bardez, Goa', '7698686430'),
-(7, ' Kiran Gawde', '2001-08-01', 'male', 'Calangute, Bardez, Goa', '9876634546'),
-(10, 'Sneharsh Kerkar', '2000-11-10', 'male', 'Taliegao', '7898212143');
+(1, 'Saish Sawant', '2000-12-11', 'male', 'Vasco', '7698671212');
 
 --
 -- Indexes for dumped tables
@@ -128,8 +131,8 @@ ALTER TABLE `doctor`
 -- Indexes for table `medhist`
 --
 ALTER TABLE `medhist`
-  ADD PRIMARY KEY (`d_id`,`p_id`),
-  ADD KEY `p_id` (`p_id`);
+  ADD PRIMARY KEY (`p_id`),
+  ADD KEY `d_id` (`d_id`);
 
 --
 -- Indexes for table `patient`
@@ -142,10 +145,22 @@ ALTER TABLE `patient`
 --
 
 --
+-- AUTO_INCREMENT for table `bill`
+--
+ALTER TABLE `bill`
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `doctor`
+--
+ALTER TABLE `doctor`
+  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -161,8 +176,8 @@ ALTER TABLE `bill`
 -- Constraints for table `medhist`
 --
 ALTER TABLE `medhist`
-  ADD CONSTRAINT `medhist_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`),
-  ADD CONSTRAINT `medhist_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`);
+  ADD CONSTRAINT `medhist_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `patient` (`p_id`),
+  ADD CONSTRAINT `medhist_ibfk_2` FOREIGN KEY (`d_id`) REFERENCES `doctor` (`d_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
