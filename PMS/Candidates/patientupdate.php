@@ -86,7 +86,7 @@
 		<a href="http://localhost/patient-management-system/PMS/Candidates/home.html">Home</a>
 		<a href="http://localhost/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
 		<a href="http://localhost/patient-management-system/PMS/Candidates/patient.php">Patient</a>
-	</div>
+	</div><br><br>
 
     <!-- Patient registration form -->
 <form method="post">
@@ -119,7 +119,7 @@
 
     <input type="submit" value="Submit">
 	<input type="reset" value="Reset">
-</form>
+</form><br>
 
 <!-- Footer -->
 <!-- <div class="footer">

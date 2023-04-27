@@ -4,6 +4,23 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<title>Medical History</title>
 	<style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('PMS_BG.jpg'); /* Replace with your own image URL */
+  background-size: cover;
+}
+
+	/* Style the form */
+	form {
+	  border: 3px solid #f1f1f1;
+	  width: 50%;
+	  margin: 0 auto;
+	  padding: 30px;
+	  background-color: rgba(255, 255, 255, 0.7);
+	}
+
+
 		/* Style the navigation bar */
 		.navbar {
 		  background-color: #333;
@@ -27,13 +44,7 @@
 	  color: black;
 	}
 
-	/* Style the form */
-	form {
-	  border: 3px solid #f1f1f1;
-	  width: 50%;
-	  margin: 0 auto;
-	  padding: 20px;
-	}
+
 
 	h1{
 		text-align: center;
@@ -85,7 +96,7 @@
 		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/home.html">Home</a>
 		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
 		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/patient.php">Patient</a>
-	</div>
+	</div><br><br>
 
     <!-- Patient registration form -->
 <form method = "post">
@@ -110,7 +121,7 @@
 
     <input type="submit" value="Submit">
 	<input type="reset" value="Reset">
-</form>
+</form><br>
 
 <!-- Footer -->
 <!-- <div class="footer">
