@@ -186,17 +186,6 @@ $sql = "INSERT INTO `patient` ( `p_name`, `dob`, `p_gender`, `p_address`, `p_pho
 VALUES ( '$name', '$dob', '$gender', '$address', '$phone')";
 $result = mysqli_query($conn, $sql);
 
-		echo "<h2>Your Information:</h2>";
-		
-		echo "Name: $name<br>";
-		echo "Date of Birth: $dob<br>";
-		echo "Gender: $gender<br>";
-		echo "Address: $address<br>";
-		echo "Phone: $phone<br>";
-
-		echo"<br>";
-		echo"<br>";
-		echo"<br>";
 
         // record entry message
         if($result){
