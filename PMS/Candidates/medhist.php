@@ -90,23 +90,23 @@
     <!-- Patient registration form -->
 <form method = "post">
 	<h1>Medical History</h1>
-	<label for="name">Doctor ID:</label>
-	<input type="text" id="docid" name="name"><br><br>
+	<label for="id">Doctor ID:</label>
+	<input type="int" id="d_id" name="d_id"><br><br>
 
-	<label for="name">Patient ID:</label>
-	<input type="text" id="patientid" name="name"><br><br>
+	<label for="id">Patient ID:</label>
+	<input type="int" id="p_id" name="p_id"><br><br>
 
-	<label for="dob">Date of Addission:</label>
-	<input type="date" id="dateadmit" name="dob"><br><br>
+	<label for="dadd">Date of Addission:</label>
+	<input type="date" id="dateadmit" name="dateadmit"><br><br>
 
-    <label for="dob">Date of Discharge:</label>
-	<input type="date" id="datedischarge" name="dob"><br><br>
+    <label for="ddis">Date of Discharge:</label>
+	<input type="date" id="datedischarge" name="datedischarge"><br><br>
 
-	<label for="lname">medicines:</label>
-	<input type="text" id="medicines" name="specialization"><br><br>
+	<label for="medicine">medicines:</label>
+	<input type="text" id="medicines" name="medicines"><br><br>
 
-	<label for="address">Treatment:</label>
-	<textarea id="address" name="treatment"></textarea><br><br>
+	<label for="treatment">Treatment:</label>
+	<textarea id="treatment" name="treatment"></textarea><br><br>
 
     <input type="submit" value="Submit">
 	<input type="reset" value="Reset">
@@ -152,30 +152,20 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-		$name = $_POST["name"];
-		$dob = $_POST["dob"];
-		$gender = $_POST['gender'];
-		$address = $_POST["address"];
-		$phone = $_POST["phone"];
-        $specialization = $_POST["specialization"];
+		$p_id= $_POST["p_id"];
+		$d_id= $_POST["d_id"];
+		$dateadmit = $_POST["dateadmit"];
+		$datedischarge = $_POST['datedischarge'];
+		$medicines = $_POST["medicines"];
+		$treatment = $_POST["treatment"];
+       
 
 		//Inserting to database table
-$sql = "INSERT INTO `doctor` (`d_name`, `dob`, `d_gender`, `d_address`, `d_phone`, `specialization`) 
-VALUES ('$name', '$dob', '$gender', '$address', '$phone', '$specialization')";
+$sql = "INSERT INTO `medhist` (`p_id`, `d_id`, `date_admit`, `date_discharge`, `medicines`, `treatment`) 
+VALUES ('$p_id', '$d_id', '$dateadmit', '$datedischarge', '$medicines', '$treatment')";
 $result = mysqli_query($conn, $sql);
 
-		echo "<h2>Your Submission:</h2>";
-		
-		echo "Name: $name<br>";
-		echo "Date of Birth: $dob<br>";
-		echo "Gender: $gender<br>";
-		echo "Address: $address<br>";
-        echo "Specialization: $specialization<br>";
-		echo "Phone: $phone<br>";
-
-		echo"<br>";
-		echo"<br>";
-		echo"<br>";
+	
 
         // record entry message
         if($result){
@@ -186,15 +176,15 @@ $result = mysqli_query($conn, $sql);
 
 	}
 
-//displaying records from db table
-$sql = "Select * from `doctor`";
-	$result = mysqli_query($conn, $sql);	
+// //displaying records from db table
+ $sql = "Select * from `medhist`";
+ 	$result = mysqli_query($conn, $sql);	
 
-	echo "<table class ='table table-dark'>";
-echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Specialization</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["d_id"] . "</td><td>" . $row["d_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["d_gender"] . "</td><td>" . $row["d_address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["d_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
-}
+ 	echo "<table class ='table table-dark'>";
+ echo "<tr><th>Patient ID</th><th>Doctor ID</th><th>Date of Admission</th><th>Date of Discharge</th><th>Medicines</th><th>Treatment</th></tr>";
+ while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+     echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["d_id"] . "</td><td>" . $row["date_admit"] . "</td><td>" . $row["date_discharge"] . "</td><td>" . $row["medicines"] . "</td><td>" . $row["treatment"] . "</td></tr>";
+ }
 echo "</table>";
 
 // Close the database connection

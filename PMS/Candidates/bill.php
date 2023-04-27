@@ -89,24 +89,28 @@
 
     <!-- Patient registration form -->
 <form method = "post">
-	<h1>Doctor Registration Form</h1>
+	<h1>Patient Bill Details</h1>
+	<br>
+	 <br>
 	<label for="billid"> Bill ID:</label>
-	<input type="int" id="billid" name="name"><br><br>
+	<input type="int" id="b_id" name="b_id"><br><br>
 
 	<label for="patientId"> Patient ID:</label>
-	<input type="int" id="patientid" name="name"><br><br>
+	<input type="int" id="p_id" name="p_id"><br><br>
 
-	<label for="lname">Pathology Fees:</label>
-	<input type="int" id="pfees" name="specialization"><br><br>
+	<label for="pathologyfees">Pathology Fees:</label>
+	<input type="int" id="pathology_fees" name="pathology_fees"><br><br>
 
 	<label for="roomfees">Room Fees:</label>
-	<input type="int" id="roomfees" name="phone"><br><br>
+	<input type="int" id="room_fees" name="room_fees"><br><br>
 
-	<label for="roomfees">Misc:</label>
-	<input type="int" id="Misc" name="phone"><br><br>
+	<label for="misc">Misc:</label>
+	<input type="int" id="misc" name="misc"><br><br>
 	
-    <label for="roomfees">Total:</label>
-	<input type="int" id="total" name="phone"><br><br>
+    <!-- <label for="total">Total:</label>
+	<input type="int" id="total" name="total"><br><br> -->
+
+
 
     <input type="submit" value="Submit">
 	<input type="reset" value="Reset">
@@ -152,30 +156,20 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-		$name = $_POST["name"];
-		$dob = $_POST["dob"];
-		$gender = $_POST['gender'];
-		$address = $_POST["address"];
-		$phone = $_POST["phone"];
-        $specialization = $_POST["specialization"];
+		$b_id = $_POST["b_id"];
+		$p_id = $_POST["p_id"];
+		$pathology_fees = $_POST['pathology_fees'];
+		$room_fees = $_POST["room_fees"];
+		$misc = $_POST["misc"];
+        // $total = $_POST["t"];
+
+		$t = $pathology_fees + $room_fees + $misc;
 
 		//Inserting to database table
-$sql = "INSERT INTO `doctor` (`d_name`, `dob`, `d_gender`, `d_address`, `d_phone`, `specialization`) 
-VALUES ('$name', '$dob', '$gender', '$address', '$phone', '$specialization')";
+$sql = "INSERT INTO `bill` (`b_id`, `p_id`, `pathology_fees`, `room_fees`, `misc`, `total`) 
+VALUES ('$b_id', '$p_id', '$pathology_fees', '$room_fees', '$misc', '$t')";
 $result = mysqli_query($conn, $sql);
 
-		echo "<h2>Your Submission:</h2>";
-		
-		echo "Name: $name<br>";
-		echo "Date of Birth: $dob<br>";
-		echo "Gender: $gender<br>";
-		echo "Address: $address<br>";
-        echo "Specialization: $specialization<br>";
-		echo "Phone: $phone<br>";
-
-		echo"<br>";
-		echo"<br>";
-		echo"<br>";
 
         // record entry message
         if($result){
@@ -187,13 +181,13 @@ $result = mysqli_query($conn, $sql);
 	}
 
 //displaying records from db table
-$sql = "Select * from `doctor`";
+$sql = "Select * from `bill`";
 	$result = mysqli_query($conn, $sql);	
 
 	echo "<table class ='table table-dark'>";
-echo "<tr><th>Doctor ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Specialization</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
+echo "<tr><th>Bill ID</th><th>Patient ID</th><th>Pathology Fees</th><th>Room Charges</th><th>Miscellaneous</th><th>Total</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["d_id"] . "</td><td>" . $row["d_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["d_gender"] . "</td><td>" . $row["d_address"] . "</td><td>" . $row["specialization"] . "</td><td>" . $row["d_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
+    echo "<tr><td>" . $row["b_id"] . "</td><td>" . $row["p_id"] . "</td><td>" . $row["pathology_fees"] . "</td><td>" . $row["room_fees"] . "</td><td>" . $row["misc"] . "</td><td>" . $row["total"] . "</td></tr>";
 }
 echo "</table>";
 
