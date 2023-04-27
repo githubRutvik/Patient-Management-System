@@ -5,6 +5,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Add styles for the login form -->
 	<style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('PMS_BG.jpg'); /* Replace with your own image URL */
+  background-size: cover;
+}
+
+.container {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: rgba(255, 255, 255, 0.7); /* Add a semi-transparent white background to the form container */
+  padding: 20px;
+  border-radius: 5px;
+}
+
 		form {
 		  width: 80%;
 		  margin: 0 auto;
@@ -36,9 +52,9 @@
 		  background-color: #45a049;
 		}
 
-		.container {
+		/* .container {
 		  padding: 16px;
-		}
+		} */
 
 		.error {
 		  color: red;

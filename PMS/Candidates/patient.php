@@ -83,10 +83,10 @@
 <body>
 	<!-- Navigation bar -->
 	<div class="navbar">
-		<a href="http://localhost/patient-management-system/PMS/Candidates/home.html">Home</a>
-		<a href="http://localhost/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
-		<a href="http://localhost/patient-management-system/PMS/Candidates/patient.php">Patient</a>
-	</div>
+		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/home.html">Home</a>
+		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
+		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/patient.php">Patient</a>
+	</div><br><br>
 
     <!-- Patient registration form -->
 <form method="post">
@@ -131,7 +131,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "patient_management_system";
+$database = "patient-management-system";
 
 //Create Connection Object
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -188,9 +188,9 @@ $result = mysqli_query($conn, $sql);
 	$result = mysqli_query($conn, $sql);	
 
 	echo "<table class ='table table-dark'>";
-echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th><th>Update</th><th>Delete</th></tr>";
+echo "<tr><th>Patient ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Address</th><th>Phone</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td><td><button class='btn btn-secondary btn-sm'>Update</button></td></td><td><button class='btn btn-secondary btn-sm'>Delete</button></td></tr>";
+    echo "<tr><td>" . $row["p_id"] . "</td><td>" . $row["p_name"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["p_gender"] . "</td><td>" . $row["p_address"] . "</td><td>" . $row["p_phone"] . "</td></tr>";
 }
 echo "</table>";
 

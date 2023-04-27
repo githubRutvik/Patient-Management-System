@@ -89,44 +89,26 @@
 
     <!-- Patient registration form -->
 <form method = "post">
-	<h1>Patient Bill Details</h1>
-	<br>
-	 <br>
+	<h1>Bill Details</h1>
 	<label for="billid"> Bill ID:</label>
 	<input type="int" id="b_id" name="b_id"><br><br>
 
 	<label for="patientId"> Patient ID:</label>
 	<input type="int" id="p_id" name="p_id"><br><br>
 
-	<label for="pathologyfees">Pathology Fees:</label>
+	<label for="Pathology Fees">Pathology Fees:</label>
 	<input type="int" id="pathology_fees" name="pathology_fees"><br><br>
 
 	<label for="roomfees">Room Fees:</label>
 	<input type="int" id="room_fees" name="room_fees"><br><br>
 
-	<label for="misc">Misc:</label>
+	<label for="Misc">Misc:</label>
 	<input type="int" id="misc" name="misc"><br><br>
-	
-    <!-- <label for="total">Total:</label>
-	<input type="int" id="total" name="total"><br><br> -->
-
 
 
     <input type="submit" value="Submit">
 	<input type="reset" value="Reset">
 </form>
-
-<!-- Footer -->
-<!-- <div class="footer">
-	<p>Copyright © 2023 
-	<a href="#">YourWebsite.com</a> All rights reserved.</p>
-</div> -->
-
-
-
-
-
-
 
 
 <?php
@@ -156,18 +138,18 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
+		
 		$b_id = $_POST["b_id"];
 		$p_id = $_POST["p_id"];
 		$pathology_fees = $_POST['pathology_fees'];
 		$room_fees = $_POST["room_fees"];
 		$misc = $_POST["misc"];
-        // $total = $_POST["t"];
-
 		$t = $pathology_fees + $room_fees + $misc;
+        $total = $t;
 
 		//Inserting to database table
 $sql = "INSERT INTO `bill` (`b_id`, `p_id`, `pathology_fees`, `room_fees`, `misc`, `total`) 
-VALUES ('$b_id', '$p_id', '$pathology_fees', '$room_fees', '$misc', '$t')";
+VALUES ('$b_id', '$p_id', '$pathology_fees', '$room_fees', '$misc', '$total')";
 $result = mysqli_query($conn, $sql);
 
 
@@ -185,7 +167,7 @@ $sql = "Select * from `bill`";
 	$result = mysqli_query($conn, $sql);	
 
 	echo "<table class ='table table-dark'>";
-echo "<tr><th>Bill ID</th><th>Patient ID</th><th>Pathology Fees</th><th>Room Charges</th><th>Miscellaneous</th><th>Total</th></tr>";
+echo "<tr><th>Bill ID</th><th>Patient ID</th><th>Pathology Fees</th><th>Room Fees</th><th>Miscellaneous</th><th>Total</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     echo "<tr><td>" . $row["b_id"] . "</td><td>" . $row["p_id"] . "</td><td>" . $row["pathology_fees"] . "</td><td>" . $row["room_fees"] . "</td><td>" . $row["misc"] . "</td><td>" . $row["total"] . "</td></tr>";
 }
