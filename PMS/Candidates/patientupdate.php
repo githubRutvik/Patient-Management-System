@@ -5,6 +5,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('PMS_BG.jpg'); /* Replace with your own image URL */
+  background-size: cover;
+}
+
+
 		/* Style the navigation bar */
 		.navbar {
 		  background-color: #333;
@@ -15,25 +23,22 @@
 	.navbar a {
 	  float: left;
 	  display: block;
-	  color: white;
+	  color: black;
 	  text-align: center;
 	  padding: 14px 20px;
 	  text-decoration: none;
 	}
 
-	/* Change the color of links on hover */
-	.navbar a:hover {
-	  background-color: #ddd;
-	  color: black;
-	}
-
+	
 	/* Style the form */
 	form {
 	  border: 3px solid #f1f1f1;
 	  width: 50%;
 	  margin: 0 auto;
 	  padding: 30px;
+	  background-color: rgba(255, 255, 255, 0.7);
 	}
+	
 
 	
 	h1{
@@ -82,11 +87,25 @@
 </head>
 <body>
 	<!-- Navigation bar -->
-	<div class="navbar">
-		<a href="http://localhost/patient-management-system/PMS/Candidates/home.html">Home</a>
-		<a href="http://localhost/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
-		<a href="http://localhost/patient-management-system/PMS/Candidates/patient.php">Patient</a>
-	</div><br><br>
+	<nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">PMS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/home.html">Home</a>
+              </li>
+              
+              
+            </ul>
+          </div>
+          
+        
+        </div>
+      </nav><br><br>
 
     <!-- Patient registration form -->
 <form method="post">

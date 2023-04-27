@@ -31,18 +31,14 @@ body {
 	.navbar a {
 	  float: left;
 	  display: block;
-	  color: white;
+	  color: black;
 	  text-align: center;
 	  padding: 14px 20px;
 	  text-decoration: none;
 	}
 
 
-	/* Change the color of links on hover */
-	.navbar a:hover {
-	  background-color: #ddd;
-	  color: black;
-	}
+
 
 
 
@@ -92,11 +88,25 @@ body {
 </head>
 <body>
 	<!-- Navigation bar -->
-	<div class="navbar">
-		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/home.html">Home</a>
-		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/doctor.php">Doctor</a>
-		<a href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/patient.php">Patient</a>
-	</div><br><br>
+	<nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">PMS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="http://localhost/Patient_Management_System/patient-management-system/PMS/Candidates/home.html">Home</a>
+              </li>
+              
+              
+            </ul>
+          </div>
+          
+        
+        </div>
+      </nav><br><br>
 
     <!-- Patient registration form -->
 <form method = "post">
