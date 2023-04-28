@@ -189,19 +189,6 @@ $sql = "INSERT INTO `doctor` (`d_name`, `dob`, `d_gender`, `d_address`, `d_phone
 VALUES ('$name', '$dob', '$gender', '$address', '$phone', '$specialization')";
 $result = mysqli_query($conn, $sql);
 
-		echo "<h2>Your Submission:</h2>";
-		
-		echo "Name: $name<br>";
-		echo "Date of Birth: $dob<br>";
-		echo "Gender: $gender<br>";
-		echo "Address: $address<br>";
-        echo "Specialization: $specialization<br>";
-		echo "Phone: $phone<br>";
-
-		echo"<br>";
-		echo"<br>";
-		echo"<br>";
-
         // record entry message
         if($result){
             echo "The record was inserted successfully. <br>";
